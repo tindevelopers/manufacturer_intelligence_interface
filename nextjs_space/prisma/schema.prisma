@@ -8,3 +8,58 @@ datasource db {
     provider = "postgresql"
     url      = env("DATABASE_URL")
 }
+
+model Manufacturer {
+  id            String    @id @default(cuid())
+  name          String
+  website       String    @unique
+  category      String?
+  location      String?
+  status        String    @default("pending") // pending, verified, failed
+  pipelineId    String?
+  extractionStatus String @default("pending") // pending, in_progress, completed, failed
+  products      Product[]
+  searches      SearchHistory[]
+  metadata      Json?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([website])
+  @@index([status])
+  @@index([extractionStatus])
+}
+
+model Product {
+  id              String    @id @default(cuid())
+  name            String
+  manufacturerId  String
+  manufacturer    Manufacturer @relation(fields: [manufacturerId], references: [id], onDelete: Cascade)
+  sku             String?
+  category        String?
+  price           Float?
+  availability    String?   // in_stock, out_of_stock, discontinued
+  specifications  Json?
+  description     String?
+  imageUrl        String?
+  productUrl      String?
+  metadata        Json?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([manufacturerId])
+  @@index([category])
+  @@index([availability])
+}
+
+model SearchHistory {
+  id              String    @id @default(cuid())
+  manufacturerId  String
+  manufacturer    Manufacturer @relation(fields: [manufacturerId], references: [id], onDelete: Cascade)
+  searchQuery     String?
+  filterApplied   Json?
+  productsFound   Int       @default(0)
+  createdAt       DateTime  @default(now())
+
+  @@index([manufacturerId])
+  @@index([createdAt])
+}
