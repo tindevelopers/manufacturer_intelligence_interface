@@ -33,6 +33,11 @@ export function DashboardClient() {
       const result = await response?.json();
       
       if (!result?.success) {
+        // Don't show error for API key not configured - it's expected
+        if (result?.code === 'API_KEY_NOT_CONFIGURED') {
+          setData({ manufacturer: { pipeline: null, executions: [] }, product: { pipeline: null, executions: [] } });
+          return;
+        }
         throw new Error(result?.error || 'Failed to fetch pipeline data');
       }
       

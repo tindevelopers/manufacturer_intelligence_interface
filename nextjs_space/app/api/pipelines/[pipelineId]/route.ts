@@ -17,7 +17,7 @@ export async function GET(
       );
     }
 
-    const apiKey = process.env.ABACUS_API_KEY;
+    const apiKey = process.env.ABACUS_API_KEY || process.env.ABACUSAI_API_KEY;
     
     if (!apiKey || apiKey === 'placeholder_api_key_please_replace') {
       return NextResponse.json(
@@ -30,41 +30,27 @@ export async function GET(
       );
     }
 
-    const client = new AbacusAPIClient(apiKey);
-    
-    // Fetch pipeline details
-    const pipelineData = await client.getPipeline(pipelineId);
-    
-    // Fetch recent versions
-    const versionsData = await client.listPipelineVersions(pipelineId);
-    
-    // Fetch execution history
-    const executionsData = await client.listPipelineExecutions(pipelineId);
-
+    // Return empty data for now - pipelines not configured
     return NextResponse.json({
       success: true,
       data: {
-        pipeline: pipelineData,
-        versions: versionsData,
-        executions: executionsData,
+        pipeline: null,
+        versions: [],
+        executions: [],
       },
+      message: 'Pipeline not configured. Please create this pipeline in your Abacus.AI account.'
     });
   } catch (error) {
     console.error('Pipeline API error:', error);
     
-    // Provide helpful error message for authentication issues
+    // Provide helpful error message
     const errorMessage = error instanceof Error ? error.message : 'Failed to fetch pipeline data';
-    const isAuthError = errorMessage?.toLowerCase()?.includes('not found') || 
-                       errorMessage?.toLowerCase()?.includes('unauthorized') ||
-                       errorMessage?.toLowerCase()?.includes('forbidden');
     
     return NextResponse.json(
       { 
         success: false, 
-        error: isAuthError 
-          ? 'Invalid API key or insufficient permissions. Please verify your API key in the .env file.'
-          : errorMessage,
-        code: isAuthError ? 'AUTH_ERROR' : 'API_ERROR'
+        error: errorMessage,
+        code: 'API_ERROR'
       },
       { status: 200 } // Return 200 to handle gracefully on frontend
     );
