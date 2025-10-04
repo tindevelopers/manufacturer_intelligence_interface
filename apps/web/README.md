@@ -173,3 +173,4 @@ For issues related to:
 ## License
 
 This project is provided as-is for use with Abacus.AI pipelines.
+# Trigger new deployment with correct Vercel configuration
