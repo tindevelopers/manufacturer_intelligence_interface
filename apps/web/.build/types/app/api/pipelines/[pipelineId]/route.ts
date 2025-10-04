@@ -1,4 +1,4 @@
-// File: /home/ubuntu/manufacturer_intelligence_interface/nextjs_space/app/api/pipelines/[pipelineId]/route.ts
+// File: /home/ubuntu/manufacturer_intelligence_interface/apps/web/app/api/pipelines/[pipelineId]/route.ts
 import * as entry from '../../../../../../app/api/pipelines/[pipelineId]/route.js'
 import type { NextRequest } from 'next/server.js'
 

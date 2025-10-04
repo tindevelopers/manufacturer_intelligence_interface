@@ -1,4 +1,4 @@
-// File: /home/ubuntu/manufacturer_intelligence_interface/nextjs_space/app/products/page.tsx
+// File: /home/ubuntu/manufacturer_intelligence_interface/apps/web/app/products/page.tsx
 import * as entry from '../../../../app/products/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
