@@ -1,9 +1,5 @@
 
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "yarn workspace web build",
-  "devCommand": "yarn workspace web dev",
-  "installCommand": "yarn install",
-  "framework": null,
+  "buildCommand": "turbo run build --filter=web",
   "outputDirectory": "apps/web/.next"
 }
