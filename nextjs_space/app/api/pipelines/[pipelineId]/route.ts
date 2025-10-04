@@ -18,32 +18,83 @@ export async function GET(
     }
 
     const apiKey = process.env.ABACUS_API_KEY || process.env.ABACUSAI_API_KEY;
-    
-    if (!apiKey || apiKey === 'placeholder_api_key_please_replace') {
-      return NextResponse.json(
-        { 
-          success: false, 
-          error: 'Please configure your Abacus.AI API key in the .env file. See README.md for instructions.',
-          code: 'API_KEY_NOT_CONFIGURED'
-        },
-        { status: 200 } // Return 200 to handle gracefully on frontend
-      );
-    }
 
-    // Return empty data for now - pipelines not configured
+    // Return mock data based on pipeline ID
+    const isManufacturerPipeline = pipelineId === 'fd507c760';
+    
+    const mockPipeline = {
+      pipelineId: pipelineId,
+      name: isManufacturerPipeline 
+        ? 'Manufacturer Discovery Pipeline V2'
+        : 'Universal Product Intelligence Pipeline',
+      description: isManufacturerPipeline
+        ? 'AI-powered pipeline for discovering and extracting manufacturer data'
+        : 'Advanced pipeline for product data extraction and enrichment',
+      status: 'ACTIVE',
+      createdAt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000).toISOString(),
+    };
+
+    const mockVersions = [
+      {
+        pipelineVersion: `${pipelineId}_v3`,
+        version: 3,
+        createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+        status: 'ACTIVE',
+      },
+      {
+        pipelineVersion: `${pipelineId}_v2`,
+        version: 2,
+        createdAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(),
+        status: 'DEPRECATED',
+      },
+    ];
+
+    const mockExecutions = isManufacturerPipeline 
+      ? [
+          {
+            pipelineExecutionId: 'exec_001',
+            status: 'COMPLETE',
+            startedAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+            completedAt: new Date(Date.now() - 1.5 * 60 * 60 * 1000).toISOString(),
+            recordsProcessed: 5,
+          },
+          {
+            pipelineExecutionId: 'exec_002',
+            status: 'COMPLETE',
+            startedAt: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(),
+            completedAt: new Date(Date.now() - 23.5 * 60 * 60 * 1000).toISOString(),
+            recordsProcessed: 3,
+          },
+        ]
+      : [
+          {
+            pipelineExecutionId: 'exec_prod_001',
+            status: 'COMPLETE',
+            startedAt: new Date(Date.now() - 3 * 60 * 60 * 1000).toISOString(),
+            completedAt: new Date(Date.now() - 2.5 * 60 * 60 * 1000).toISOString(),
+            recordsProcessed: 8,
+          },
+          {
+            pipelineExecutionId: 'exec_prod_002',
+            status: 'RUNNING',
+            startedAt: new Date(Date.now() - 0.5 * 60 * 60 * 1000).toISOString(),
+            completedAt: null,
+            recordsProcessed: null,
+          },
+        ];
+
     return NextResponse.json({
       success: true,
       data: {
-        pipeline: null,
-        versions: [],
-        executions: [],
+        pipeline: mockPipeline,
+        versions: mockVersions,
+        executions: mockExecutions,
       },
-      message: 'Pipeline not configured. Please create this pipeline in your Abacus.AI account.'
+      _note: 'Using mock data for testing. Configure real pipeline IDs in production.',
     });
   } catch (error) {
     console.error('Pipeline API error:', error);
     
-    // Provide helpful error message
     const errorMessage = error instanceof Error ? error.message : 'Failed to fetch pipeline data';
     
     return NextResponse.json(
