@@ -3,26 +3,5 @@
   "buildCommand": "yarn build",
   "outputDirectory": ".next",
   "installCommand": "yarn install",
-  "framework": "nextjs",
-  "functions": {
-    "app/api/**/*.ts": {
-      "runtime": "nodejs18.x"
-    }
-  },
-  "env": {
-    "ABACUS_API_KEY": "@abacus_api_key",
-    "ABACUSAI_API_KEY": "@abacusai_api_key"
-  },
-  "build": {
-    "env": {
-      "ABACUS_API_KEY": "@abacus_api_key",
-      "ABACUSAI_API_KEY": "@abacusai_api_key"
-    }
-  },
-  "deployments": [
-    {
-      "source": ".",
-      "destination": "."
-    }
-  ]
+  "framework": "nextjs"
 }
