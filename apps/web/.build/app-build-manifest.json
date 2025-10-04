@@ -1,0 +1,51 @@
+{
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/webpack-efbe11197cdf528a.js",
+      "static/chunks/ceb5afef-a65d68aed1660b63.js",
+      "static/chunks/156-986ca3471af93828.js",
+      "static/chunks/main-app-f896963268641fe0.js",
+      "static/chunks/app/_not-found/page-0f2920590e016601.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-efbe11197cdf528a.js",
+      "static/chunks/ceb5afef-a65d68aed1660b63.js",
+      "static/chunks/156-986ca3471af93828.js",
+      "static/chunks/main-app-f896963268641fe0.js",
+      "static/css/d52d0dab7730df48.css",
+      "static/chunks/770-0244f09b2ba36c85.js",
+      "static/chunks/247-f97e32108e41e7c5.js",
+      "static/chunks/app/layout-de7435dc95b59c73.js"
+    ],
+    "/manufacturers/page": [
+      "static/chunks/webpack-efbe11197cdf528a.js",
+      "static/chunks/ceb5afef-a65d68aed1660b63.js",
+      "static/chunks/156-986ca3471af93828.js",
+      "static/chunks/main-app-f896963268641fe0.js",
+      "static/chunks/770-0244f09b2ba36c85.js",
+      "static/chunks/364-8cd3712e879caa9d.js",
+      "static/chunks/389-aac7a218ab62b940.js",
+      "static/chunks/app/manufacturers/page-29d926f2612d1c1d.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-efbe11197cdf528a.js",
+      "static/chunks/ceb5afef-a65d68aed1660b63.js",
+      "static/chunks/156-986ca3471af93828.js",
+      "static/chunks/main-app-f896963268641fe0.js",
+      "static/chunks/770-0244f09b2ba36c85.js",
+      "static/chunks/364-8cd3712e879caa9d.js",
+      "static/chunks/247-f97e32108e41e7c5.js",
+      "static/chunks/app/page-a438589fa3e85641.js"
+    ],
+    "/products/page": [
+      "static/chunks/webpack-efbe11197cdf528a.js",
+      "static/chunks/ceb5afef-a65d68aed1660b63.js",
+      "static/chunks/156-986ca3471af93828.js",
+      "static/chunks/main-app-f896963268641fe0.js",
+      "static/chunks/770-0244f09b2ba36c85.js",
+      "static/chunks/364-8cd3712e879caa9d.js",
+      "static/chunks/389-aac7a218ab62b940.js",
+      "static/chunks/app/products/page-fa4530c4fa98c60b.js"
+    ]
+  }
+}

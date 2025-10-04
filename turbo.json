@@ -1,0 +1,28 @@
+
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**"],
+      "env": ["ABACUS_API_KEY", "ABACUSAI_API_KEY"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "env": ["ABACUS_API_KEY", "ABACUSAI_API_KEY"]
+    },
+    "start": {
+      "cache": false,
+      "persistent": true,
+      "env": ["ABACUS_API_KEY", "ABACUSAI_API_KEY"]
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "clean": {
+      "cache": false
+    }
+  }
+}
