@@ -174,3 +174,4 @@ For issues related to:
 
 This project is provided as-is for use with Abacus.AI pipelines.
 # Trigger new deployment with correct Vercel configuration
+# Testing deployment with updated Vercel settings
