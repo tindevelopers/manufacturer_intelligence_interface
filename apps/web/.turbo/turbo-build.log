@@ -18,15 +18,15 @@ $ next build
    Collecting build traces ...
 
 Route (app)                              Size     First Load JS
-┌ ○ /                                    3.1 kB          113 kB
-├ ○ /_not-found                          872 B            88 kB
+┌ ○ /                                    3.09 kB         113 kB
+├ ○ /_not-found                          876 B            88 kB
 ├ ○ /api/pipelines                       0 B                0 B
 ├ ƒ /api/pipelines/[pipelineId]          0 B                0 B
-├ ○ /manufacturers                       4.61 kB         129 kB
+├ ○ /manufacturers                       4.59 kB         129 kB
 └ ○ /products                            4.71 kB         129 kB
-+ First Load JS shared by all            87.2 kB
-  ├ chunks/194-e5c1493e0d22a7bf.js       31.6 kB
-  ├ chunks/ba57f82b-b95bbe3baa05f198.js  53.6 kB
++ First Load JS shared by all            87.1 kB
+  ├ chunks/1dd3208c-92b504c62a7fc47f.js  53.7 kB
+  ├ chunks/528-e27ef9d23c94e64c.js       31.6 kB
   └ other shared chunks (total)          1.89 kB
 
 

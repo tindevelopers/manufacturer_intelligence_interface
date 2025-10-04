@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "buildCommand": "yarn build",
+  "outputDirectory": "apps/web/.next",
+  "installCommand": "yarn install",
+  "framework": "nextjs",
+  "functions": {
+    "apps/web/app/api/**/*.ts": {
+      "runtime": "nodejs18.x"
+    }
+  },
+  "env": {
+    "ABACUS_API_KEY": "@abacus_api_key",
+    "ABACUSAI_API_KEY": "@abacusai_api_key"
+  }
+}

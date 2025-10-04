@@ -5,7 +5,7 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"],
+      "outputs": ["apps/web/.next/**", "!apps/web/.next/cache/**"],
       "env": ["ABACUS_API_KEY", "ABACUSAI_API_KEY"]
     },
     "dev": {
