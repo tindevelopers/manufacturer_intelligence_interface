@@ -1,7 +1,9 @@
 
 
+import { Suspense } from 'react';
 import { Package } from 'lucide-react';
 import { ProductsClient } from './_components/products-client';
+import { LoadingState } from '@/components/loading-state';
 
 export default function ProductsPage() {
   return (
@@ -12,11 +14,13 @@ export default function ProductsPage() {
           <h1 className="text-4xl font-bold">Product Intelligence</h1>
         </div>
         <p className="text-muted-foreground">
-          Browse and search products from Pipeline 1398624bb0
+          Browse and search products extracted from manufacturer websites
         </p>
       </div>
       
-      <ProductsClient />
+      <Suspense fallback={<LoadingState message="Loading products..." />}>
+        <ProductsClient />
+      </Suspense>
     </div>
   );
 }

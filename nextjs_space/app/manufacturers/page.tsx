@@ -12,7 +12,7 @@ export default function ManufacturersPage() {
           <h1 className="text-4xl font-bold">Manufacturer Discovery</h1>
         </div>
         <p className="text-muted-foreground">
-          Browse and search manufacturers discovered by Pipeline fd507c760
+          Add manufacturers and extract their product catalogs using AI pipelines
         </p>
       </div>
       

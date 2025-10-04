@@ -9,18 +9,23 @@ interface ErrorMessageProps {
   title?: string;
   message: string;
   className?: string;
+  action?: React.ReactNode;
 }
 
 export function ErrorMessage({ 
   title = 'Error', 
   message, 
-  className = '' 
+  className = '',
+  action
 }: ErrorMessageProps) {
   return (
     <Alert variant="destructive" className={className}>
       <AlertCircle className="h-4 w-4" />
       <AlertTitle>{title}</AlertTitle>
-      <AlertDescription>{message}</AlertDescription>
+      <AlertDescription className="flex flex-col gap-3">
+        <span>{message}</span>
+        {action && <div>{action}</div>}
+      </AlertDescription>
     </Alert>
   );
 }
