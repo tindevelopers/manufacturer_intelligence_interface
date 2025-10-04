@@ -1,49 +1,57 @@
 
 # Manufacturer Intelligence Interface
 
-A modern web application for accessing and analyzing manufacturer discovery and product intelligence data from Abacus.AI pipelines.
+A modern web interface for querying and displaying data from Abacus.AI pipelines. This application provides easy access to manufacturer discovery and product intelligence data from your pipelines.
 
-## 🚀 Tech Stack
+## Features
 
-- **Framework**: Next.js 14.2.28 (App Router)
-- **Language**: TypeScript 5.2.2
-- **Styling**: Tailwind CSS 3.3.3
-- **UI Components**: Radix UI + shadcn/ui
-- **State Management**: TanStack React Query 5.0.0
-- **Monorepo**: Turborepo
-- **Package Manager**: Yarn
+- 📊 **Dashboard Overview**: Monitor pipeline status and execution history
+- 🏭 **Manufacturer Discovery**: Browse and search manufacturers from Pipeline fd507c760
+- 📦 **Product Intelligence**: Explore products from Pipeline 1398624bb0
+- 🔍 **Advanced Search & Filtering**: Filter by date, status, category, and more
+- 📱 **Responsive Design**: Works seamlessly on desktop, tablet, and mobile
+- 🎨 **Modern UI**: Clean and intuitive interface built with Next.js and Tailwind CSS
 
-## 📋 Prerequisites
+## Prerequisites
 
-- Node.js >= 18.0.0
-- Yarn >= 1.22.0
-- Abacus.AI API Key
+- Node.js 18+ and Yarn
+- Abacus.AI API key ([Get yours here](https://abacus.ai/app/profile/apikey))
 
-## 🛠️ Getting Started
+## Getting Started
 
-### 1. Clone the repository
+### 1. Clone and Setup
 
 ```bash
-git clone <your-repository-url>
-cd manufacturer_intelligence_interface
+cd /path/to/manufacturer_intelligence_interface
 ```
 
-### 2. Install dependencies
+### 2. Configure API Key
+
+Create a `.env` file in the project root:
+
+```bash
+cp .env.example .env
+```
+
+Edit the `.env` file and add your Abacus.AI API key:
+
+```env
+ABACUS_API_KEY=your_actual_api_key_here
+```
+
+**How to get your API key:**
+1. Log in to [Abacus.AI](https://abacus.ai)
+2. Navigate to your profile
+3. Go to the API Keys section
+4. Generate a new API key or copy an existing one
+
+### 3. Install Dependencies
 
 ```bash
 yarn install
 ```
 
-### 3. Configure environment variables
-
-Create a `.env` file in `apps/web/`:
-
-```env
-ABACUS_API_KEY=your_api_key_here
-ABACUSAI_API_KEY=your_api_key_here
-```
-
-### 4. Run the development server
+### 4. Run the Development Server
 
 ```bash
 yarn dev
@@ -51,121 +59,121 @@ yarn dev
 
 The application will be available at `http://localhost:3000`
 
-## 📦 Project Structure
+## Project Structure
 
 ```
 manufacturer_intelligence_interface/
-├── apps/
-│   └── web/                    # Next.js application
-│       ├── app/               # App router pages
-│       ├── components/        # React components
-│       ├── lib/              # Utility functions and API clients
-│       └── public/           # Static assets
-├── packages/                  # Shared packages (future)
-├── .github/
-│   └── workflows/
-│       └── deploy.yml        # GitHub Actions workflow
-├── turbo.json                # Turborepo configuration
-├── package.json              # Root package.json
-└── README.md
+├── app/                          # Next.js app directory
+│   ├── api/                      # API routes
+│   │   └── pipelines/           # Pipeline endpoints
+│   ├── manufacturers/           # Manufacturer pages
+│   ├── products/                # Product pages
+│   └── _components/             # Page-specific components
+├── components/                   # Reusable components
+│   ├── ui/                      # UI primitives
+│   ├── navigation.tsx           # Main navigation
+│   ├── search-bar.tsx           # Search component
+│   ├── filter-panel.tsx         # Filter component
+│   └── pipeline-card.tsx        # Pipeline status card
+├── lib/                         # Utilities and configurations
+│   ├── api-client.ts            # Abacus.AI API client
+│   ├── types.ts                 # TypeScript type definitions
+│   └── utils.ts                 # Helper functions
+├── scripts/                     # Deployment and utility scripts
+├── docs/                        # Documentation
+└── .env                         # Environment variables (create this)
 ```
 
-## 🔧 Available Scripts
+## API Integration
 
-- `yarn dev` - Start development server
-- `yarn build` - Build for production
-- `yarn start` - Start production server
-- `yarn lint` - Run ESLint
-- `yarn clean` - Clean build artifacts
+The application integrates with Abacus.AI REST API to fetch pipeline data. Key endpoints used:
 
-## 🔌 API Integration
+- `POST /v0/describePipeline` - Get pipeline details
+- `POST /v0/listPipelineVersions` - List pipeline versions
+- `POST /v0/listPipelineExecutions` - Get execution history
 
-The application connects to two Abacus.AI pipelines:
+### Pipeline IDs
 
-1. **Manufacturer Discovery Pipeline V2** (ID: `fd507c760`)
-2. **Universal Product Intelligence Pipeline** (ID: `1398624bb0`)
+- **Manufacturer Discovery**: `fd507c760`
+- **Product Intelligence**: `1398624bb0`
 
-### API Endpoints
+## Usage
 
-- `GET /api/pipelines` - Fetch all pipeline data
-- `GET /api/pipelines/[pipelineId]` - Fetch specific pipeline details
+### Dashboard
 
-## 🚢 Deployment
+The main dashboard provides an overview of both pipelines:
+- Current status
+- Recent execution history
+- Success rates
+- Quick access to detailed views
 
-### GitHub Setup
+### Manufacturer Discovery
 
-1. Push your code to GitHub:
+Browse and filter manufacturers:
+- Search by name, location, or category
+- Filter by status (verified, pending, inactive)
+- Filter by discovery date range
+- View detailed manufacturer information
+
+### Product Intelligence
+
+Explore products with advanced filtering:
+- Search by product name, manufacturer, or description
+- Filter by manufacturer, category, or document type
+- Filter by creation date range
+- View product details and associated documents
+
+## Development
+
+### Building for Production
 
 ```bash
-git remote add origin <your-github-repo-url>
-git push -u origin main
+yarn build
 ```
 
-2. Add GitHub Secrets:
-   - Go to Settings → Secrets and variables → Actions
-   - Add `ABACUS_API_KEY` and `ABACUSAI_API_KEY`
-
-### Deploy to Vercel (Recommended)
-
-1. Install Vercel CLI:
+### Running Production Build
 
 ```bash
-npm i -g vercel
+yarn start
 ```
 
-2. Deploy:
+## Environment Variables
 
-```bash
-cd apps/web
-vercel
-```
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `ABACUS_API_KEY` | Your Abacus.AI API key | Yes |
 
-3. Add environment variables in Vercel dashboard
+## Troubleshooting
 
-### Deploy to Other Platforms
+### API Key Issues
 
-The application can be deployed to:
-- **Vercel** (Recommended for Next.js)
-- **Netlify**
-- **AWS Amplify**
-- **Google Cloud Run**
-- **Docker** (custom infrastructure)
+If you see "API key not configured" errors:
+1. Verify the `.env` file exists in the project root directory
+2. Check that `ABACUS_API_KEY` is set correctly
+3. Restart the development server after changing environment variables
 
-## 🔐 Environment Variables
+### Connection Issues
 
-Required environment variables:
+If the application can't connect to Abacus.AI:
+1. Verify your API key is valid
+2. Check your internet connection
+3. Ensure you have access to the specified pipelines
 
-| Variable | Description |
-|----------|-------------|
-| `ABACUS_API_KEY` | Abacus.AI API key for authentication |
-| `ABACUSAI_API_KEY` | Alternative API key variable |
+### Data Not Showing
 
-## 📱 Features
+The application currently uses mock data for demonstration. To integrate with real pipeline data:
+1. Modify the API route handlers in `app/api/pipelines/`
+2. Update data transformation logic in the client components
+3. Adjust type definitions in `lib/types.ts` to match your pipeline output
 
-- ✅ Real-time pipeline monitoring
-- ✅ Manufacturer discovery data display
-- ✅ Product intelligence search and filtering
-- ✅ Responsive design
-- ✅ Modern UI with Radix components
-- ✅ Type-safe API client
-- ✅ Server-side rendering
+## Support
 
-## 🤝 Contributing
+For issues related to:
+- **Abacus.AI API**: Visit [Abacus.AI Documentation](https://api.abacus.ai/documentation)
+- **Application bugs**: Check the console for error messages
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+## License
 
-## 📄 License
-
-This project is private and proprietary.
-
-## 📞 Support
-
-For questions or issues, contact your team lead or create an issue in the repository.
-
----
-
-Built with ❤️ using Next.js and Turborepo
+This project is provided as-is for use with Abacus.AI pipelines.
+# Trigger new deployment with correct Vercel configuration
+# Testing deployment with updated Vercel settings
